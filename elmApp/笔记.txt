@@ -1,0 +1,53 @@
+-{
+    1.初识display:table布局
+        详情见：https://www.cnblogs.com/cowboybusy/p/10530547.html
+    2.better-scroll相关{
+        官方文档：https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/#better-scroll%20%E6%98%AF%E4%BB%80%E4%B9%88
+        注意:使用better-scroll必须要在页面渲染完DOM后
+        1.使用
+            下载：npm install better-scroll --save
+            引用：import BScroll from 'better-scroll'
+            初始化：this.menuScroll = new BScroll('DOM', {});
+        2.如果在vue项目中要操作原生DOM，一定要在DOM成功渲染后并且要在这个nextTick回调中执行 this.$nextTick(() => {});
+        3.在vue中如何获取原生DOM对象，前提是此DOM已经渲染完毕
+            <button ref="btn"></button>
+            this.$refs.btn.
+        4.两个内容关联滚动的逻辑
+            1.获取到右边每个foodslist的高度并添加在一个listHeight数组中
+            2.监听右边的scrollY并判断scrollY在listHeight数组中的哪个区间
+            3.根据区间判断左侧的关联模块
+    }
+    3.vue绑定事件时传递的参数$event是什么？
+        就是事件源对象event，如果加括号了就要手动传递$event,如果没加括号则默认传递
+    4.如果给一个盒子设置了display：inline-block，那么这个盒子与其他盒子会默认有一点小的缝隙，这有两种解决方法：
+        1.给这个盒子的父盒子设置font-size = 0
+        2.将有间距的两个盒子的html标签合并在一行中不要换行
+    5.flex属性{
+        详情见：http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+        1.flex 属性是flex-grow、flex-shrink 和 flex-basis 属性的简写，默认值0 1 auto
+        2.flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
+        3.flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+        4.flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间。
+    }
+    6.css样式相关{
+        1.box-sizing: border-box;
+            规定两个并排的带边框的框,为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制。通过从已设定的宽度和高度分别减去边框和内边距才能得到内容的宽度和高度。
+        2.vertical-align 属性设置元素的垂直对齐方式
+        3.box-shadow:   h-shadow(必需的。水平阴影的位置。允许负值) 
+                        v-shadow(必需的。垂直阴影的位置。允许负值) 
+                        blur(可选。模糊距离) spread(可选。阴影的大小) 
+                        color 
+                        inset(可选。从外层的阴影（开始时）改变阴影内侧阴影);
+    }
+    7.解决事件在PC端点击一次执行两次的问题
+        添加如下代码：
+        if (!event._constructed) {
+            return;
+        }
+    8.编程习惯相关{
+        1.如果一个方法是组件私有的，那么一般在方法名前加_下划线
+        2.类名后跟-hook表示这个类名只是用于被js选中
+    }
+    9.Eslint如何忽略某个文件的检测
+        在.eslintignore文件中添加需要忽略的文件夹即可。注意:如果修改了这个文件就需要重修启动项目。
+}
